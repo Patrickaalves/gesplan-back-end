@@ -5,22 +5,18 @@ import com.patrick.gesplanbakend.exceptions.ResourceNotFoundException;
 import com.patrick.gesplanbakend.models.Fornecedores;
 import com.patrick.gesplanbakend.models.FornecedoresTelefone;
 import com.patrick.gesplanbakend.repositories.FornecedoresRepository;
-import com.patrick.gesplanbakend.repositories.FornecedoresTelefoneRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
 @Service
 public class FornecedoresService {
     private FornecedoresRepository fornecedoresRepository;
-    private FornecedoresTelefoneRepository  fornecedoresTelefoneRepository;
-
 
     @Transactional
     public Fornecedores criarFornecedores(FornecedoresDto fornecedoresDto) {
