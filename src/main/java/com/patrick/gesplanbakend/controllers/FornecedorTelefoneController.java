@@ -1,15 +1,11 @@
 package com.patrick.gesplanbakend.controllers;
 
+import com.patrick.gesplanbakend.dto.FornecedorTelefoneDto;
 import com.patrick.gesplanbakend.models.FornecedoresTelefone;
-import com.patrick.gesplanbakend.repositories.FornecedoresTelefoneRepository;
 import com.patrick.gesplanbakend.services.FornecedorTelefoneService;
-import com.patrick.gesplanbakend.services.FornecedoresService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,7 +17,17 @@ public class FornecedorTelefoneController {
 
     @GetMapping("/fornecedor/{id}")
     public ResponseEntity<List<FornecedoresTelefone>> buscarTelefoneDosFornecedor(@PathVariable long id) {
-        List<FornecedoresTelefone> telefones = fornecedorTelefoneService.buscarTelefonesDosFornecedore(id);
+        List<FornecedoresTelefone> telefones = fornecedorTelefoneService.buscarTodosTelefonesDosFornecedore(id);
         return ResponseEntity.ok(telefones);
+    }
+
+    @PutMapping("/atualizarTelefone")
+    public ResponseEntity<FornecedoresTelefone> atualizarTelefone(@RequestParam long idFornecedor,
+                                                                  @RequestParam long idTelefone,
+                                                                  @RequestBody FornecedorTelefoneDto fornecedorTelefoneDto) {
+        FornecedoresTelefone fornecedoresTelefoneAtt = fornecedorTelefoneService.atualizarTelefone(idFornecedor,
+                                                                                                   idTelefone,
+                                                                                                   fornecedorTelefoneDto);
+        return ResponseEntity.ok(fornecedoresTelefoneAtt);
     }
 }

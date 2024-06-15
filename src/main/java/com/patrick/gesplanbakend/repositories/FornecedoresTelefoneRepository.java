@@ -11,4 +11,10 @@ public interface FornecedoresTelefoneRepository extends JpaRepository<Fornecedor
 
     @Query("SELECT ft FROM FornecedoresTelefone ft WHERE ft.fornecedores.id = :id")
     List<FornecedoresTelefone> findFornecedoresTelefonesByFornecedoresId(@Param("id") Long id);
+
+
+
+    @Query("SELECT ft FROM FornecedoresTelefone ft WHERE ft.fornecedores.id = :id and ft.id = :idTel")
+    FornecedoresTelefone findFornecedoresTelefonesByFornecedoresIdAndTelId(@Param("id") Long idForn,
+                                                                           @Param("idTel") long idTel);
 }
