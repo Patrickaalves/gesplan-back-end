@@ -12,7 +12,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/desafio")
+@RequestMapping("/fornecedor")
 public class FornecedorController {
 
     FornecedoresService fornecedoresService;
