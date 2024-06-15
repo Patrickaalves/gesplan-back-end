@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface FornecedoresTelefoneRepository extends JpaRepository<FornecedoresTelefone, Long> {
 
-    @Query(value = "SELECT ft FROM FornecedoresTelefone FT WHERE FT.fornecedores.id = :id", nativeQuery = true)
-    List<FornecedoresTelefone> findFornecedoresTelefonesByFornecedoresId(@Param("id") Long fornecedoresId);
+    @Query("SELECT ft FROM FornecedoresTelefone ft WHERE ft.fornecedores.id = :id")
+    List<FornecedoresTelefone> findFornecedoresTelefonesByFornecedoresId(@Param("id") Long id);
 }

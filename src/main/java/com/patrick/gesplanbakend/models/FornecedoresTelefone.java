@@ -1,5 +1,6 @@
 package com.patrick.gesplanbakend.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +24,7 @@ public class FornecedoresTelefone {
 
     @ManyToOne
     @JoinColumn(name = "fornecedores_id")
+    @JsonIgnoreProperties({"nome", "email", "tipoDeFornecedor", "observacao", "fornecedoresTelefones"})
     private Fornecedores fornecedores;
 
 }
