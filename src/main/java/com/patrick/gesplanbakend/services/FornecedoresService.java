@@ -54,8 +54,6 @@ public class FornecedoresService {
             throw new ResourceNotFoundException("O campo email esta nulo");
         }else if (fornecedoresDto.getTipoDeFornecedor() == null) {
             throw new ResourceNotFoundException("O campo tipo de fornecedor esta nulo");
-        }else if (fornecedoresDto.getEmail() == null) {
-            throw new ResourceNotFoundException("O campo email esta nulo");
         }
     }
 
