@@ -1,6 +1,7 @@
 package com.patrick.gesplanbakend.services;
 
 import com.patrick.gesplanbakend.dto.FornecedoresDto;
+import com.patrick.gesplanbakend.exceptions.ResourceNotFoundException;
 import com.patrick.gesplanbakend.models.Fornecedores;
 import com.patrick.gesplanbakend.models.FornecedoresTelefone;
 import com.patrick.gesplanbakend.repositories.FornecedoresRepository;
@@ -17,8 +18,12 @@ public class FornecedoresService {
     private FornecedoresRepository fornecedoresRepository;
     private FornecedoresTelefoneRepository  fornecedoresTelefoneRepository;
 
+
     @Transactional
     public Fornecedores criarFornecedores(FornecedoresDto fornecedoresDto) {
+        // Validação para os requisitos de obrigatoriedade dos campos
+        validarFornecedores(fornecedoresDto);
+
         Fornecedores fornecedores = new Fornecedores();
         fornecedores.setNome(fornecedoresDto.getNome());
         fornecedores.setEmail(fornecedoresDto.getEmail());
@@ -33,6 +38,13 @@ public class FornecedoresService {
         fornecedores.setObservacao(fornecedoresDto.getObservacao());
 
         return fornecedoresRepository.save(fornecedores);
+    }
+
+    public void validarFornecedores(FornecedoresDto fornecedoresDto) {
+        if (fornecedoresDto.getNome() == null) {
+            throw new ResourceNotFoundException("O campo nome esta nulo");
+        }
+
     }
 
 }
