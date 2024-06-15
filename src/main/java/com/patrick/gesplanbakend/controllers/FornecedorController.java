@@ -4,6 +4,8 @@ import com.patrick.gesplanbakend.dto.FornecedoresDto;
 import com.patrick.gesplanbakend.models.Fornecedores;
 import com.patrick.gesplanbakend.services.FornecedoresService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,8 +32,8 @@ public class FornecedorController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Fornecedores>> buscarTodosFornecedores(){
-        List<Fornecedores> buscarTodosOsFornecedores = fornecedoresService.buscarTodosOsFornecedores();
+    public ResponseEntity<Page<Fornecedores>> buscarTodosFornecedores(Pageable pageable){
+        Page<Fornecedores> buscarTodosOsFornecedores = fornecedoresService.buscarTodosOsFornecedores(pageable);
         return ResponseEntity.ok(buscarTodosOsFornecedores);
     }
 

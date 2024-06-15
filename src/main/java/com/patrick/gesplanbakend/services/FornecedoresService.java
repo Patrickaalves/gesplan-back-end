@@ -8,6 +8,8 @@ import com.patrick.gesplanbakend.repositories.FornecedoresRepository;
 import com.patrick.gesplanbakend.repositories.FornecedoresTelefoneRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -68,9 +70,9 @@ public class FornecedoresService {
         return buscarFornecedorPorId;
     }
 
-    public List<Fornecedores> buscarTodosOsFornecedores(){
+    public Page<Fornecedores> buscarTodosOsFornecedores(Pageable pageable){
 
-        List<Fornecedores> listaFornecedor = fornecedoresRepository.findAll();
+        Page<Fornecedores> listaFornecedor = fornecedoresRepository.findAll(pageable);
 
         return listaFornecedor;
     }
