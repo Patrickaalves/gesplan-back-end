@@ -87,5 +87,8 @@ public class FornecedoresService {
         return fornecedoresRepository.save(fornecedores);
     }
 
-
+    public void excluirFornecedor(long id){
+        Fornecedores fornecedores = buscarFornecedorPorId(id);
+        fornecedoresRepository.deleteById(id);
+    }
 }

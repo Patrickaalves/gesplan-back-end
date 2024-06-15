@@ -42,5 +42,10 @@ public class FornecedorController {
         return ResponseEntity.ok(fornecedorAtualizado);
     }
 
-    
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deletarFornecedor(@PathVariable long id){
+        fornecedoresService.excluirFornecedor(id);
+
+        return ResponseEntity.ok("Fornecedor: " + id + " excluido com sucesso");
+    }
 }
