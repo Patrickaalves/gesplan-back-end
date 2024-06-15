@@ -75,7 +75,17 @@ public class FornecedoresService {
         return listaFornecedor;
     }
 
-    
+    public Fornecedores AtualizarFornecedores(long fornecedorId,FornecedoresDto fornecedoresDto) {
+
+        Fornecedores fornecedores = buscarFornecedorPorId(fornecedorId);
+
+        fornecedores.setNome(fornecedoresDto.getNome());
+        fornecedores.setEmail(fornecedoresDto.getEmail());
+        fornecedores.setTipoDeFornecedor(fornecedoresDto.getTipoDeFornecedor());
+        fornecedores.setObservacao(fornecedoresDto.getObservacao());
+
+        return fornecedoresRepository.save(fornecedores);
+    }
 
 
 }
