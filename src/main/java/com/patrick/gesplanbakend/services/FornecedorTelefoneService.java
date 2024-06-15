@@ -35,4 +35,7 @@ public class FornecedorTelefoneService {
         return fornecedoresTelefoneRepository.save(fornecedoresTelefoneAttualizado);
     }
 
+    public void deletarFornecedor(long idTelefone) {
+        fornecedoresTelefoneRepository.deleteById(idTelefone);
+    }
 }

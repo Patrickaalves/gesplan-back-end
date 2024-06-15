@@ -30,4 +30,12 @@ public class FornecedorTelefoneController {
                                                                                                    fornecedorTelefoneDto);
         return ResponseEntity.ok(fornecedoresTelefoneAtt);
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deletarTelefone(@PathVariable long id) {
+        fornecedorTelefoneService.deletarFornecedor(id);
+        return ResponseEntity.ok("O telefone relacionado ao id " + id + " foi deletado com sucesso");
+    }
+
+
 }
