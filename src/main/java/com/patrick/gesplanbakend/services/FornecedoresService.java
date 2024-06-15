@@ -10,6 +10,7 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -30,6 +31,10 @@ public class FornecedoresService {
 
         Set<FornecedoresTelefone> telefones = fornecedoresDto.getTelefones();
         for (FornecedoresTelefone telefone : telefones) {
+            // Validar se o telefone não esta nulo
+            if(telefone.getNumeroTelefone() == null){
+                throw new ResourceNotFoundException("O campo telefone esta nulo");
+            }
             telefone.setFornecedores(fornecedores);
         }
         fornecedores.setFornecedoresTelefones(telefones);
@@ -43,8 +48,34 @@ public class FornecedoresService {
     public void validarFornecedores(FornecedoresDto fornecedoresDto) {
         if (fornecedoresDto.getNome() == null) {
             throw new ResourceNotFoundException("O campo nome esta nulo");
+        } else if (fornecedoresDto.getEmail() == null) {
+            throw new ResourceNotFoundException("O campo email esta nulo");
+        }else if (fornecedoresDto.getTipoDeFornecedor() == null) {
+            throw new ResourceNotFoundException("O campo tipo de fornecedor esta nulo");
+        }else if (fornecedoresDto.getEmail() == null) {
+            throw new ResourceNotFoundException("O campo email esta nulo");
         }
-
     }
+
+    public Fornecedores buscarFornecedorPorId(Long fornecedorId) {
+
+        // Caso não encontre o Fornecedor, dispara a exception com uma mensagem mais detalhada
+        Fornecedores buscarFornecedorPorId = fornecedoresRepository.findById(fornecedorId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Feito a busca pelo id " + fornecedorId + " e nao foi encontrado nenhum fornecedor para o" +
+                                " respectivo id"
+                ));
+        return buscarFornecedorPorId;
+    }
+
+    public List<Fornecedores> buscarTodosOsFornecedores(){
+
+        List<Fornecedores> listaFornecedor = fornecedoresRepository.findAll();
+
+        return listaFornecedor;
+    }
+
+    
+
 
 }

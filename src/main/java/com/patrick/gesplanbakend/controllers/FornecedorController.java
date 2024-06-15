@@ -6,10 +6,9 @@ import com.patrick.gesplanbakend.services.FornecedoresService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -23,4 +22,18 @@ public class FornecedorController {
         Fornecedores salvarFornecedor = fornecedoresService.criarFornecedores(fornecedorDto);
         return new ResponseEntity<>(salvarFornecedor, HttpStatus.CREATED);
     }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Fornecedores> buscarFornecedorPorId(@PathVariable Long id){
+        Fornecedores buscarFornecedorPorId = fornecedoresService.buscarFornecedorPorId(id);
+        return ResponseEntity.ok(buscarFornecedorPorId);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Fornecedores>> buscarTodosFornecedores(){
+        List<Fornecedores> buscarTodosOsFornecedores = fornecedoresService.buscarTodosOsFornecedores();
+        return ResponseEntity.ok(buscarTodosOsFornecedores);
+    }
+
+
 }
