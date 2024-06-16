@@ -16,14 +16,8 @@ public class FornecedorTelefoneService {
     FornecedoresTelefoneRepository fornecedoresTelefoneRepository;
     FornecedoresService fornecedoresService;
 
-    public List<FornecedoresTelefone> buscarTodosTelefonesDosFornecedore(long FornecedorId){
-        List<FornecedoresTelefone> telefones = fornecedoresTelefoneRepository.findFornecedoresTelefonesByFornecedoresId(FornecedorId);
-        return telefones;
-    }
-
     public List<FornecedoresTelefone> buscarTelefonesDosFornecedoresTelId(long FornecedorId){
         // Busca o telefone dos fornecedores filtrando pelo id do telefone
-
         List<FornecedoresTelefone> telefones = fornecedoresTelefoneRepository.findFornecedoresTelefonesByFornecedoresId(FornecedorId);
         return telefones;
     }

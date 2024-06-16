@@ -16,12 +16,20 @@ import java.util.List;
 public class FornecedorTelefoneController {
     FornecedorTelefoneService fornecedorTelefoneService;
 
-    @GetMapping("/fornecedor/{id}")
-    public ResponseEntity<List<FornecedoresTelefone>> buscarTelefoneDosFornecedor(@PathVariable long id) {
-        List<FornecedoresTelefone> telefones = fornecedorTelefoneService.buscarTodosTelefonesDosFornecedore(id);
-        return ResponseEntity.ok(telefones);
+    @PostMapping("{id}")
+    public ResponseEntity<FornecedoresTelefone> criarTelefone(@PathVariable long id, @RequestBody FornecedorTelefoneDto telefone) {
+        FornecedoresTelefone FornecedorTelefoneCriado = fornecedorTelefoneService.criartelefone(id, telefone);
+        return new ResponseEntity<>(FornecedorTelefoneCriado, HttpStatus.CREATED);
     }
 
+    // Ao passar um id de forncedor, vai ser retornado todos os telefones ligados ao id do fornecedor
+    @GetMapping("/fornecedor/{id}")
+    public ResponseEntity<List<FornecedoresTelefone>> buscarTelefoneDosFornecedor(@PathVariable long id) {
+        List<FornecedoresTelefone> listaTelefoneFornecedores = fornecedorTelefoneService.buscarTelefonesDosFornecedoresTelId(id);
+        return ResponseEntity.ok(listaTelefoneFornecedores);
+    }
+
+    // Atualiza valor do campo telefone
     @PutMapping("/atualizarTelefone")
     public ResponseEntity<FornecedoresTelefone> atualizarTelefone(@RequestParam long idFornecedor,
                                                                   @RequestParam long idTelefone,
@@ -37,12 +45,4 @@ public class FornecedorTelefoneController {
         fornecedorTelefoneService.deletarFornecedor(id);
         return ResponseEntity.ok("O telefone relacionado ao id " + id + " foi deletado com sucesso");
     }
-
-    @PostMapping("{id}")
-    public ResponseEntity<FornecedoresTelefone> criarTelefone(@PathVariable long id, @RequestBody FornecedorTelefoneDto telefone) {
-        FornecedoresTelefone fornecedoresTelefonecriado = fornecedorTelefoneService.criartelefone(id, telefone);
-        return new ResponseEntity<>(fornecedoresTelefonecriado, HttpStatus.CREATED);
-    }
-
-
 }
