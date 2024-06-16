@@ -6,4 +6,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface FornecedoresRepository extends JpaRepository<Fornecedores, Long>,
         PagingAndSortingRepository<Fornecedores, Long> {
+    //PagingAndSortingRepository<Fornecedores, Long> usado para criar o pageable do endpoint Fornecedores
 }
