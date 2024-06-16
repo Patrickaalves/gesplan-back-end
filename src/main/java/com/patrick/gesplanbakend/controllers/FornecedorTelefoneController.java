@@ -22,7 +22,7 @@ public class FornecedorTelefoneController {
         return new ResponseEntity<>(FornecedorTelefoneCriado, HttpStatus.CREATED);
     }
 
-    // Ao passar um id de forncedor, vai ser retornado todos os telefones ligados ao id do fornecedor
+    // Com base no id de forncedor, vai ser retornado todos os telefones ligados ao id do fornecedor
     @GetMapping("/fornecedor/{id}")
     public ResponseEntity<List<FornecedoresTelefone>> buscarTelefoneDosFornecedor(@PathVariable long id) {
         List<FornecedoresTelefone> listaTelefoneFornecedores = fornecedorTelefoneService.buscarTelefonesDosFornecedoresTelId(id);
@@ -42,7 +42,7 @@ public class FornecedorTelefoneController {
 
     @DeleteMapping("{id}")
     public ResponseEntity<String> deletarTelefone(@PathVariable long id) {
-        fornecedorTelefoneService.deletarFornecedor(id);
+        fornecedorTelefoneService.deletarFornecedorTelefonePorIdTelefone(id);
         return ResponseEntity.ok("O telefone relacionado ao id " + id + " foi deletado com sucesso");
     }
 }

@@ -16,13 +16,28 @@ public class FornecedorTelefoneService {
     FornecedoresTelefoneRepository fornecedoresTelefoneRepository;
     FornecedoresService fornecedoresService;
 
+    public FornecedoresTelefone criartelefone(long idFornecedor,FornecedorTelefoneDto fornecedorTelefoneDto){
+        FornecedoresTelefone fornecedoresTelefone = new FornecedoresTelefone();
+
+        fornecedoresTelefone.setNumeroTelefone(fornecedorTelefoneDto.getNumeroTelefone());
+
+        Fornecedores fornecedores = fornecedoresService.buscarFornecedorPorId(idFornecedor);
+
+        fornecedoresTelefone.setFornecedores(fornecedores);
+
+        return fornecedoresTelefoneRepository.save(fornecedoresTelefone);
+    }
+
+    // Com base no id de forncedor, vai ser retornado todos os telefones ligados ao id do fornecedor
     public List<FornecedoresTelefone> buscarTelefonesDosFornecedoresTelId(long FornecedorId){
         // Busca o telefone dos fornecedores filtrando pelo id do telefone
         List<FornecedoresTelefone> telefones = fornecedoresTelefoneRepository.findFornecedoresTelefonesByFornecedoresId(FornecedorId);
         return telefones;
     }
 
-    public FornecedoresTelefone atualizarTelefone(long fornecedorId, long telefoneId, FornecedorTelefoneDto fornecedorTelefoneDto){
+    public FornecedoresTelefone atualizarTelefone(long fornecedorId,
+                                                  long telefoneId,
+                                                  FornecedorTelefoneDto fornecedorTelefoneDto){
         FornecedoresTelefone fornecedoresTelefoneAttualizado =
                 fornecedoresTelefoneRepository.findFornecedoresTelefonesByFornecedoresIdAndTelId(fornecedorId, telefoneId);
 
@@ -31,19 +46,9 @@ public class FornecedorTelefoneService {
         return fornecedoresTelefoneRepository.save(fornecedoresTelefoneAttualizado);
     }
 
-    public void deletarFornecedor(long idTelefone) {
+    public void deletarFornecedorTelefonePorIdTelefone(long idTelefone) {
         fornecedoresTelefoneRepository.deleteById(idTelefone);
     }
 
-    public FornecedoresTelefone criartelefone(long idFornecedor,FornecedorTelefoneDto fornecedorTelefoneDto){
 
-        FornecedoresTelefone fornecedoresTelefone = new FornecedoresTelefone();
-
-        fornecedoresTelefone.setNumeroTelefone(fornecedorTelefoneDto.getNumeroTelefone());
-        Fornecedores fornecedores = fornecedoresService.buscarFornecedorPorId(idFornecedor);
-
-        fornecedoresTelefone.setFornecedores(fornecedores);
-
-        return fornecedoresTelefoneRepository.save(fornecedoresTelefone);
-    }
 }
