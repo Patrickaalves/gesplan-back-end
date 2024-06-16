@@ -36,4 +36,6 @@ public class Fornecedores {
     private String tipoDeFornecedor;
 
     private String observacao;
+
+    private Boolean favorito;
 }

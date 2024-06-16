@@ -39,6 +39,7 @@ public class FornecedoresService {
 
         fornecedores.setTipoDeFornecedor(fornecedoresDto.getTipoDeFornecedor());
         fornecedores.setObservacao(fornecedoresDto.getObservacao());
+        fornecedores.setFavorito(fornecedoresDto.getFavorito());
 
         return fornecedoresRepository.save(fornecedores);
     }
@@ -79,6 +80,7 @@ public class FornecedoresService {
         fornecedores.setEmail(fornecedoresDto.getEmail());
         fornecedores.setTipoDeFornecedor(fornecedoresDto.getTipoDeFornecedor());
         fornecedores.setObservacao(fornecedoresDto.getObservacao());
+        fornecedores.setFavorito(fornecedoresDto.getFavorito());
 
         return fornecedoresRepository.save(fornecedores);
     }

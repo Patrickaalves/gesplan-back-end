@@ -18,4 +18,5 @@ public class FornecedoresDto {
     Set<FornecedoresTelefone> telefones;
     String tipoDeFornecedor;
     String observacao;
+    Boolean favorito;
 }
