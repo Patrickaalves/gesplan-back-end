@@ -1,6 +1,7 @@
 package com.patrick.gesplanbakend.services;
 
 import com.patrick.gesplanbakend.dto.FornecedorTelefoneDto;
+import com.patrick.gesplanbakend.models.Fornecedores;
 import com.patrick.gesplanbakend.models.FornecedoresTelefone;
 import com.patrick.gesplanbakend.repositories.FornecedoresTelefoneRepository;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,7 @@ import java.util.List;
 public class FornecedorTelefoneService {
 
     FornecedoresTelefoneRepository fornecedoresTelefoneRepository;
+    FornecedoresService fornecedoresService;
 
     public List<FornecedoresTelefone> buscarTodosTelefonesDosFornecedore(long FornecedorId){
         List<FornecedoresTelefone> telefones = fornecedoresTelefoneRepository.findFornecedoresTelefonesByFornecedoresId(FornecedorId);
@@ -37,5 +39,17 @@ public class FornecedorTelefoneService {
 
     public void deletarFornecedor(long idTelefone) {
         fornecedoresTelefoneRepository.deleteById(idTelefone);
+    }
+
+    public FornecedoresTelefone criartelefone(long idFornecedor,FornecedorTelefoneDto fornecedorTelefoneDto){
+
+        FornecedoresTelefone fornecedoresTelefone = new FornecedoresTelefone();
+
+        fornecedoresTelefone.setNumeroTelefone(fornecedorTelefoneDto.getNumeroTelefone());
+        Fornecedores fornecedores = fornecedoresService.buscarFornecedorPorId(idFornecedor);
+
+        fornecedoresTelefone.setFornecedores(fornecedores);
+
+        return fornecedoresTelefoneRepository.save(fornecedoresTelefone);
     }
 }

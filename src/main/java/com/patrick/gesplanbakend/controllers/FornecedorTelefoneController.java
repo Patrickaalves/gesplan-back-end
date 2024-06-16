@@ -37,5 +37,11 @@ public class FornecedorTelefoneController {
         return ResponseEntity.ok("O telefone relacionado ao id " + id + " foi deletado com sucesso");
     }
 
+    @PostMapping("{id}")
+    public ResponseEntity<FornecedorTelefoneDto> criarTelefone(@PathVariable long id, @RequestBody FornecedorTelefoneDto telefone) {
+        fornecedorTelefoneService.criartelefone(id, telefone);
+        return ResponseEntity.ok(null);
+    }
+
 
 }
