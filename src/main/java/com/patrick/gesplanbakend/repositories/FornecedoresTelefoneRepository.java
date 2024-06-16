@@ -9,12 +9,12 @@ import java.util.List;
 
 public interface FornecedoresTelefoneRepository extends JpaRepository<FornecedoresTelefone, Long> {
 
-    @Query("SELECT ft FROM FornecedoresTelefone ft WHERE ft.fornecedores.id = :id")
-    List<FornecedoresTelefone> findFornecedoresTelefonesByFornecedoresId(@Param("id") Long id);
+    // Retorna todos os telefones relacionados ao id de algum fornecedor
+    @Query("SELECT ft FROM FornecedoresTelefone ft WHERE ft.fornecedores.id = :idForn")
+    List<FornecedoresTelefone> findFornecedoresTelefonesByFornecedoresId(@Param("idForn") Long fornecedoresId);
 
-
-
-    @Query("SELECT ft FROM FornecedoresTelefone ft WHERE ft.fornecedores.id = :id and ft.id = :idTel")
-    FornecedoresTelefone findFornecedoresTelefonesByFornecedoresIdAndTelId(@Param("id") Long idForn,
-                                                                           @Param("idTel") long idTel);
+    // Retorna o telefone relacionado ao id de algum fornecedor e o id de telefone especifico
+    @Query("SELECT ft FROM FornecedoresTelefone ft WHERE ft.fornecedores.id = :idForn and ft.id = :idTel")
+    FornecedoresTelefone findFornecedoresTelefonesByFornecedoresIdAndTelId(@Param("idForn") Long idFornecedor,
+                                                                           @Param("idTel") long IdTelefone);
 }
