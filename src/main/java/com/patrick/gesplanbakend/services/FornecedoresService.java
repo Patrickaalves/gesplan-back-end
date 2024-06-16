@@ -19,7 +19,7 @@ public class FornecedoresService {
     private FornecedoresRepository fornecedoresRepository;
 
     @Transactional
-    public Fornecedores criarFornecedores(FornecedoresDto fornecedoresDto) {
+    public Fornecedores criarFornecedor(FornecedoresDto fornecedoresDto) {
         // Validação para os requisitos de obrigatoriedade dos campos
         validarFornecedores(fornecedoresDto);
 
@@ -72,7 +72,7 @@ public class FornecedoresService {
         return listaFornecedor;
     }
 
-    public Fornecedores AtualizarFornecedores(long fornecedorId,FornecedoresDto fornecedoresDto) {
+    public Fornecedores AtualizarFornecedor(long fornecedorId,FornecedoresDto fornecedoresDto) {
 
         Fornecedores fornecedores = buscarFornecedorPorId(fornecedorId);
 

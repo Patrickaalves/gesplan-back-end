@@ -19,7 +19,7 @@ public class FornecedorController {
 
     @PostMapping
     public ResponseEntity<Fornecedores> criarFornecedor(@RequestBody FornecedoresDto fornecedorDto){
-        Fornecedores salvarFornecedor = fornecedoresService.criarFornecedores(fornecedorDto);
+        Fornecedores salvarFornecedor = fornecedoresService.criarFornecedor(fornecedorDto);
         return new ResponseEntity<>(salvarFornecedor, HttpStatus.CREATED);
     }
 
@@ -37,7 +37,7 @@ public class FornecedorController {
 
     @PutMapping("{id}")
     public ResponseEntity<Fornecedores> atualizarFornecedor(@PathVariable long id, @RequestBody FornecedoresDto fornecedorDto){
-        Fornecedores fornecedorAtualizado = fornecedoresService.AtualizarFornecedores(id, fornecedorDto);
+        Fornecedores fornecedorAtualizado = fornecedoresService.AtualizarFornecedor(id, fornecedorDto);
         return ResponseEntity.ok(fornecedorAtualizado);
     }
 
