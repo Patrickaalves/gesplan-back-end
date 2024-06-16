@@ -1,9 +1,11 @@
 package com.patrick.gesplanbakend.controllers;
 
 import com.patrick.gesplanbakend.dto.FornecedorTelefoneDto;
+import com.patrick.gesplanbakend.dto.FornecedoresDto;
 import com.patrick.gesplanbakend.models.FornecedoresTelefone;
 import com.patrick.gesplanbakend.services.FornecedorTelefoneService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,9 +40,11 @@ public class FornecedorTelefoneController {
     }
 
     @PostMapping("{id}")
-    public ResponseEntity<FornecedorTelefoneDto> criarTelefone(@PathVariable long id, @RequestBody FornecedorTelefoneDto telefone) {
-        fornecedorTelefoneService.criartelefone(id, telefone);
-        return ResponseEntity.ok(null);
+    public ResponseEntity<FornecedoresTelefone> criarTelefone(@PathVariable long id, @RequestBody FornecedorTelefoneDto telefone) {
+
+        FornecedoresTelefone fornecedoresTelefonecriado = fornecedorTelefoneService.criartelefone(id, telefone);
+
+        return new ResponseEntity<>(fornecedoresTelefonecriado, HttpStatus.CREATED);
     }
 
 
