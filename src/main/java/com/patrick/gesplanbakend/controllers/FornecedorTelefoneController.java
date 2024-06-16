@@ -30,7 +30,7 @@ public class FornecedorTelefoneController {
     }
 
     // Atualiza valor do campo telefone
-    @PutMapping("/atualizarTelefone")
+    @PutMapping()
     public ResponseEntity<FornecedoresTelefone> atualizarTelefone(@RequestParam long idFornecedor,
                                                                   @RequestParam long idTelefone,
                                                                   @RequestBody FornecedorTelefoneDto fornecedorTelefoneDto) {
