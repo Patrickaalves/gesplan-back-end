@@ -10,8 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @AllArgsConstructor
 @RestController
 @RequestMapping("/fornecedor")
@@ -38,8 +36,7 @@ public class FornecedorController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Fornecedores> atualizarFornecedor(@PathVariable long id,
-                                                            @RequestBody FornecedoresDto fornecedorDto){
+    public ResponseEntity<Fornecedores> atualizarFornecedor(@PathVariable long id, @RequestBody FornecedoresDto fornecedorDto){
         Fornecedores fornecedorAtualizado = fornecedoresService.AtualizarFornecedores(id, fornecedorDto);
         return ResponseEntity.ok(fornecedorAtualizado);
     }
@@ -47,7 +44,6 @@ public class FornecedorController {
     @DeleteMapping("{id}")
     public ResponseEntity<String> deletarFornecedor(@PathVariable long id){
         fornecedoresService.excluirFornecedor(id);
-
         return ResponseEntity.ok("Fornecedor: " + id + " excluido com sucesso");
     }
 }
