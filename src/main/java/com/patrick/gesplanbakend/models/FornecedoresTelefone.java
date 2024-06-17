@@ -19,7 +19,7 @@ public class FornecedoresTelefone {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, name = "numero_telefone", unique = true)
+    @Column(nullable = false, name = "numero_telefone")
     private String numeroTelefone;
 
     @ManyToOne
