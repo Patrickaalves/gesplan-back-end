@@ -9,3 +9,10 @@ Nesta classe esta definido o seguinte conteudo ".allowedOrigins("http://localhos
 Ao subir a aplicação front-end  trocar o "http://localhost:5173" para o endereço respctivo que subiu sua aplicação.
 Caso contrario a sua aplicação front-end não ira conseguir se comunicar com esta aplicação back-end por conta das 
 politicas de CORS
+
+------------------------------------------------
+
+Na pasta do projeto tem o arquivo requisicoes_api.json
+Caso queiram testar a api fora do front-end.
+
+Basta importar este arquivo no insomnia.
